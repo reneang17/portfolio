@@ -1,0 +1,215 @@
+/* variables declared here - these are the colors for our pages, as well as the font stacks and sizes. */
+:root {
+  --background: #000000;
+  --pred: #fb0007;
+  --pbrown: #d58540;
+  --pmelon: #fda941;
+  --pyellow: #ffff0b;
+
+  --pgreen: #22ff06;
+  --paqua: #21ffff;
+  --psky: #3ba6ff;
+  --pblue: #1700ff;
+  --maintext: #d6d5ff;
+
+  --font-size: 1.3rem;
+  --quattro: "Quattrocento Sans", serif;
+  --bitter: "Bitter", serif;
+  --tiny5: "Tiny5", sans-serif;
+}
+/* border box model: https://css-tricks.com/box-sizing/ */
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 1rem;
+  font-family: var(--quattro);
+  background-color: var(--background);
+  color: var(--maintext);
+  font-size: var(--font-size);
+  border: 3px solid #3ba6ff;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  color: var(--pyellow);
+}
+
+a:hover {
+  color: var(--pgreen);
+}
+
+/* intro */
+
+#intro {
+  padding: 4rem 1rem 10rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#intro p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#intro .name {
+  font-family: var(--bitter);
+  font-size: 1rem;
+}
+
+.name span {
+  font-family: var(--quattro);
+  font-size: 4rem;
+  color: var(--pyellow);
+  display: block;
+}
+
+*intro h2 {
+  font-size: 4rem;
+  font-weight: normal;
+}
+
+/*.section-contact {
+  border: dashed #3ba6ff;
+}*/
+
+#contact {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 3rem 0;
+  border: solid var(--psky);
+}
+
+#contact p:last-child {
+  margin-top: 3rem;
+}
+
+nav {
+  font-family: var(--quattro);
+  font-size: 80%;
+  padding: 1rem;
+}
+
+nav h1 a {
+  font-family: var(--tiny5);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 120%;
+}
+
+nav li:first-child {
+  flex-basis: 100%;
+  font-size: 160%;
+  text-align: center;
+}
+
+nav [class*="fa-"] {
+  font-size: 200%;
+  vertical-align: middle;
+}
+
+nav a {
+  color: var(--pyellow);
+  text-decoration: none;
+  display: block;
+}
+
+.button {
+  text-decoration: none;
+  background-color: var(--pmelon);
+  padding: 0.5rem;
+  color: var(--background);
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: var(--pyellow);
+  padding: 0.5rem;
+  color: var(--background);
+  border-radius: 5px;
+}
+
+/* footer section */
+footer {
+  text-align: center;
+  padding: 4rem 0;
+}
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 3rem;
+  font-size: 3rem;
+}
+
+.icon-container {
+  overflow: hidden; /* Hide content when it moves out of the container */
+  width: 100%; /* Adjust the width as needed */
+  font-size: 2.5rem;
+  padding: 2rem 0 0 0;
+  position: relative;
+}
+
+.icon-class {
+  display: inline-block;
+  animation: moveRight 5s infinite linear; /* Adjust duration as needed */
+  white-space: nowrap; /* Ensure icons stay in one line */
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100%); /* Start off-screen to the left */
+  }
+  100% {
+    transform: translateX(
+      calc(100vw)
+    ); /* Move to the right edge of the viewport */
+  }
+}
+
+@keyframes colorCycle {
+  0% {
+    color: var(--pyellow);
+  } /* Color 1 */
+  25% {
+    color: var(--pgreen);
+  } /* Color 2 */
+  50% {
+    color: var(--paqua);
+  } /* Color 3 */
+  75% {
+    color: var(--pmelon);
+  } /* Color 4 */
+  100% {
+    color: var(--pred);
+  } /* Loop back to Color 1 */
+}
+
+.resume a {
+  animation: colorCycle 8s infinite;
+}
