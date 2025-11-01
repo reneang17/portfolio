@@ -37,6 +37,18 @@ body {
   border: 3px solid #3ba6ff;
 }
 
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* make sure images don't exceed the width of the window */
+img {
+  max-width: 100%;
+  border-radius: var(--corners);
+}
+
 h1,
 h2,
 h3 {
@@ -91,6 +103,7 @@ a:hover {
   margin: 0 auto;
   padding: 3rem 0;
   border: solid var(--psky);
+  list-style-type: none;
 }
 
 #contact p:last-child {
@@ -212,4 +225,88 @@ footer ul {
 
 .resume a {
   animation: colorCycle 8s infinite;
+}
+
+/* projects */
+main {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.projects {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+}
+.project {
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: var(--corners);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+.project ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.project li {
+  background-color: var(--marina);
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: var(--corners-sm);
+  font-size: calc(var(--base-font-size) * 0.85);
+}
+.project img {
+  grid-row: 1/2;
+}
+.img-border {
+  border: 1px solid var(--onyx);
+}
+
+@media (min-width: 750px) {
+  :root {
+    --base-font-size: 1.125rem;
+  }
+  h1 {
+    margin-left: -3px;
+  }
+  .wrapper {
+    padding: 5rem;
+  }
+  .main-article {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: left;
+  }
+  .main-article img {
+    max-height: 400px;
+    margin: 0 0 0 auto;
+    object-fit: none;
+    object-position: none;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+}
+@media (min-width: 850px) {
+  main {
+    text-align: left;
+  }
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .project img {
+    grid-row: auto;
+  }
+  .project ul {
+    justify-content: flex-start;
+  }
 }
