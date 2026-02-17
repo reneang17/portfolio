@@ -1,273 +1,795 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>René's Portfolio</title>
-    <link href="css/style.css" rel="stylesheet" />
-    <script
-      src="https://kit.fontawesome.com/6a3b2ed20f.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bitter&family=Quattrocento+Sans&family=Tiny5&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <div class="icon-container">
-    <div class="icon-class">
-      <i class="fa-solid fa-cat fa-bounce" style="color: #a69580"> </i>
-      <span
-        class="fa-solid fa-ghost fa-shake"
-        style="color: var(--maintext)"
-      ></span>
-      <span
-        class="fa-solid fa-ghost fa-shake"
-        style="color: var(--pred)"
-      ></span>
-      <span
-        class="fa-solid fa-ghost fa-shake"
-        style="color: var(--pyellow)"
-      ></span>
-      <span
-        class="fa-solid fa-ghost fa-shake"
-        style="color: var(--pblue)"
-      ></span>
-      <span
-        class="fa-solid fa-ghost fa-shake"
-        style="color: var(--pgreen)"
-      ></span>
-      <i
-        class="fa-brands fa-space-awesome fa-spin"
-        style="color: var(--maintext)"
-      ></i>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>René Ángeles | Scientist, Frontend Engineer, QA</title>
+    <meta name="description" content="Portfolio of René Ángeles - Grounding abstract models into resilient software architectures.">
+    
+    <!-- Fonts: Inter for UI, JetBrains Mono for Code/Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Added weight 500 to Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for minimal setup) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons (Lightweight SVG) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Font Awesome (for Retro Animation) -->
+    <script src="https://kit.fontawesome.com/6a3b2ed20f.js" crossorigin="anonymous"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable manual dark mode toggling
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617', // Added darker shade for dark mode bg
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom tweaks for print/pdf export */
+        @media print {
+            .no-print { display: none; }
+            body { color: black; background: white; }
+        }
+
+        /* RETRO THEME OVERRIDES (Terminal Style) */
+        html.theme-retro body {
+            background-color: #000000 !important;
+            color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-nav {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border-bottom-color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-footer {
+            background-color: #000000 !important;
+            border-top-color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-card {
+            background-color: #000000 !important;
+            border-color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-dot {
+            background-color: #ffff0b !important;
+            border-color: #ffff0b !important;
+        }
+        /* Override all text colors to yellow in retro mode */
+        html.theme-retro [class*="text-slate-"], 
+        html.theme-retro .dark\:text-slate-200,
+        html.theme-retro .dark\:text-slate-400,
+        html.theme-retro .text-white,
+        html.theme-retro .dark\:text-white {
+            color: #ffff0b !important;
+        }
+        /* Links hover effect in retro */
+        html.theme-retro a:hover {
+            color: #22ff06 !important; /* Green from old site */
+        }
+        html.theme-retro svg, html.theme-retro i {
+            color: #ffff0b !important;
+            fill: currentColor;
+        }
+
+        /* View Engineering Button in Retro Mode */
+        html.theme-retro .btn-retro-target {
+            background-color: #000000 !important;
+            color: #22ff06 !important; /* Green */
+            border: 1px solid #22ff06 !important;
+        }
+        html.theme-retro .btn-retro-target:hover {
+            background-color: #22ff06 !important;
+            color: #000000 !important;
+            box-shadow: 0 0 10px #22ff06;
+        }
+
+        /* Resume Button Icon in Retro Mode */
+        /* Default Retro State: Black bg, White text/border (standard) or Yellow? 
+           User asked for hover effect. Let's ensure consistency. */
+        html.theme-retro .btn-retro-resume:hover {
+            border-color: #22ff06 !important;
+            color: #22ff06 !important;
+        }
+        html.theme-retro .btn-retro-resume:hover i,
+        html.theme-retro .btn-retro-resume:hover svg {
+            color: #22ff06 !important;
+        }
+
+        /* RETRO ANIMATION (Cat, Ghosts, Rocket) */
+        .retro-animation-container {
+            display: none; /* Hidden by default */
+            overflow: hidden;
+            width: 100%;
+            font-size: 2.5rem;
+            padding: 1rem 0; /* Reduced padding slightly */
+            position: absolute; /* Overlay or top? user said "accross the screen". index_old had it in flow. Let's keep it visible but maybe absolute top? or just flow. index_old was flow. */
+            top: 60px; /* Below nav? Nav is fixed top-0 h-16 (64px). Let's put it below nav. */
+            z-index: 40; /* Below nav (z-50) */
+            pointer-events: none; /* Let clicks pass through */
+        }
+        
+        html.theme-retro .retro-animation-container {
+            display: block;
+        }
+
+        .retro-icon-wrapper {
+            display: inline-block;
+            animation: moveRight 7.5s infinite linear; /* User requested 1/4 faster (approx 7.5s vs 10s) */
+            white-space: nowrap;
+        }
+
+        .retro-flip-box {
+            display: inline-block;
+            transition: transform 0.1s;
+        }
+        .retro-flipped {
+            transform: scaleX(-1);
+        }
+
+        @keyframes moveRight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Colors from index_old */
+        .retro-cat { color: #a69580; }
+        .retro-ghost-1 { color: #d6d5ff; } /* maintext */
+        .retro-ghost-2 { color: #fb0007; } /* pred */
+        .retro-ghost-3 { color: #ffff0b; } /* pyellow */
+        .retro-ghost-4 { color: #1700ff; } /* pblue */
+        .retro-ghost-5 { color: #22ff06; } /* pgreen */
+        .retro-rocket { color: #d6d5ff; } /* maintext */
+
+    </style>
+</head>
+<!-- Initial state: Default to Day (bg-slate-50). JS will take over. -->
+<body class="js-theme-body bg-slate-50 text-slate-900 font-sans antialiased selection:bg-slate-200 selection:text-slate-900 dark:text-slate-100 dark:selection:bg-slate-700 dark:selection:text-slate-50 transition-colors duration-300">
+
+    <!-- Retro Animation Container (Only visible in Retro Theme) -->
+    <div class="retro-animation-container">
+        <div class="retro-icon-wrapper">
+             <div class="retro-flip-box">
+                 <!-- Cat -->
+                <i class="fa-solid fa-cat fa-bounce retro-cat"></i>
+                <!-- Ghosts (Phantom) -->
+                <span class="fa-solid fa-ghost fa-shake retro-ghost-1"></span>
+                <span class="fa-solid fa-ghost fa-shake retro-ghost-2"></span>
+                <span class="fa-solid fa-ghost fa-shake retro-ghost-3"></span>
+                <span class="fa-solid fa-ghost fa-shake retro-ghost-4"></span>
+                <span class="fa-solid fa-ghost fa-shake retro-ghost-5"></span>
+                <!-- Rocket -->
+                <i class="fa-brands fa-space-awesome fa-spin retro-rocket"></i>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="wrapper">
-  <body>
-    <nav>
-      <ul>
-        <li>
-          <h1>
-            <a href="index.html"
-              ><i class="fa-solid fa-shield-cat"></i> René's</a
-            >
-          </h1>
-        </li>
-        <li>
-          <a href="#projects"
-            ><span class="fa-solid fa-screwdriver-wrench"></span> Portfolio</a
-          >
-        </li>
-        <li class="resume">
-          <a href="https://docs.google.com/document/d/1bx7T1hZQ_d4ZDRcL59J5J8WqPk50w6zJTs_hzifPdgM/edit?usp=sharing"
-            ><span class="fa-solid fa-ghost fa-shake"></span> Resumé</a
-          >
-        </li>
-        <li>
-          <a href="#contact"
-            ><span class="fa-solid fa-envelope"></span> Contact</a
-          >
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/reneang17/" target="_blank">
-            <span class="fa-brands fa-linkedin" aria-only="true"></span>
-            <span class="sr-only">Linkedin</span></a
-          >
-        </li>
-        <li>
-          <a href="https://www.github.com/reneang17" aria-only="true"
-            ><span class="fa-brands fa-github"></span>
-            <span class="sr-only">Github</span></a
-          >
-        </li>
-        <!-- <li>
-          <a href="https://www.github.com/reneang17" class="button">Resumé</a>
-        </li> -->
-      </ul>
+
+    <!-- Navigation (Minimal) -->
+    <nav class="js-theme-nav fixed top-0 w-full bg-slate-50/90 backdrop-blur-sm border-b-2 border-slate-300 dark:border-slate-700 z-50 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Logo + Name Container -->
+            <div class="flex items-center gap-1">
+                <!-- Custom Logo Image (Dynamic Color via Mask) -->
+                <!-- Using bg-current allows it to inherit the text color overrides (including Retro Yellow) -->
+                <div class="h-10 w-16 -ml-2 bg-current text-slate-900 dark:text-slate-200 transition-colors duration-300 hover:opacity-80"
+                     style="-webkit-mask-image: url('media/logo.png'); mask-image: url('media/logo.png'); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;">
+                </div>
+                
+                <!-- Increased font size to 17px -->
+                <span class="text-[17px] font-bold tracking-tight text-slate-900 dark:text-slate-200">R. Ángeles</span>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden sm:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    <a href="#timeline" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Timeline</a>
+                    <a href="#works" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Works</a>
+                    <a href="#skills" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Toolbox</a>
+                    <a href="#contact" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Contact</a>
+                </div>
+                
+                <!-- Brightness Slider - Adjusted size to be smaller -->
+                <div class="flex items-center gap-2 bg-slate-200 dark:bg-slate-800 rounded-full px-3 py-1.5 transition-colors duration-300 shadow-inner">
+                    <!-- Reduced icon size to w-4 h-4 -->
+                    <i data-feather="moon" class="w-4 h-4 text-slate-500 dark:text-slate-400"></i>
+                    <!-- Range Slider - Increased max to 4 -->
+                    <input type="range" id="theme-slider" min="0" max="4" step="1" 
+                           class="w-24 h-1.5 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-slate-600 accent-slate-900 dark:accent-slate-200 focus:outline-none"
+                           aria-label="Adjust Brightness"
+                           oninput="setTheme(this.value)">
+                    <!-- Reduced icon size to w-4 h-4 -->
+                    <i data-feather="sun" class="w-4 h-4 text-slate-500 dark:text-slate-400"></i>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <section id="intro">
-      <p class="name">Hello, my name is <span>René Ángeles</span></p>
-      <h2>I work with software</h2>
-
-      <p>
-        Specifically QA engineering, that is helping my team deliver solutions
-        at adecuate standards.
-      </p>
-
-      <p>
-        Currently, working on an app for tcg communities and leveling up my
-        skills at
-        <a href="https://frontendmasters.com/" target="_blank"
-          >Frontend Masters</a
-        >.
-      </p>
-    </section>
-
-   
-
-
-
-    <div class="wrapper">
-      <main>
-        <h2 id="projects">Portfolio</h2>
-        <div class="projects">
-          <article class="project">
-            <div class="text">
-              <h3>Forward</h3>
-              <p>
-                A modern task management and agenda application designed to maximize daily productivity. 
-                It combines a traditional to-do list with a structured agenda and a backlog board to capture all your ideas.
-                Check out the code <a href="https://github.com/reneang17/forward" target="_blank">here</a>.
-              </p>
-              <ul>
-                <li>Vue.js 3</li>
-                <li>Vite</li>
-                <li>Tailwind CSS</li>
-                <li>Pinia</li>
-                <li>Firebase</li>
-              </ul>
-            </div>
-            <img src="./media/forward.png" alt="Screenshot of the Forward project showing the focus view" class="img-border">
-          </article>
-          <article class="project">
-            <div class="text">
-              <h3>SupportBuddy</h3>
-              <p>
-                FocusPet is a "frameless" desktop companion for macOS that helps you stay productive. 
-                The cat reacts to your activity, sleeping when you work and judging you when you visit distracting websites.
-                Check out the code <a href="https://github.com/reneang17/SupportBuddy" target="_blank">here</a>.
-              </p>
-              <ul>
-                <li>Python</li>
-                <li>Tkinter</li>
-              </ul>
-            </div>
-            <img src="./media/supportbuddy.jpg" alt="Screenshot of SupportBuddy showing the cat sleeping" class="img-border">
-          </article>
-          <article class="project">
-            <div class="text">
-              <h3>Maka Yoga</h3>
-              <p>
-                A modern, responsive web application for Maka Yoga studio in Oaxaca, built with performance, accessibility, and community in mind.
-                Check out the code <a href="https://github.com/reneang17/maka" target="_blank">here</a>.
-              </p>
-              <ul>
-                <li>Vite</li>
-                <li>Vanilla JavaScript</li>
-                <li>Tailwind CSS</li>
-                <li>Font Awesome</li>
-              </ul>
-            </div>
-            <img src="./media/maka.png" alt="Screenshot of the Maka Yoga website hero section" class="img-border">
-          </article>
-          <article class="project">
-            <div class="text">
-              <h3>Author Encoder</h3>
-
-              <p>During my AI fellowhship at Insight Data Science NY, I attempted to build a  
-                recommendation system of books. What I mean by this,
-                is to use a novel method to encode writing style useing NLP techniques. Then the idea is that you have metrics that 
-                can show you authors that write similarly to what you liked.
-                Checkout more detaial at my repo <a href="https://github.com/reneang17/authorencoder" target="_blank">here</a>.</p>
-
-              <ul>
-                <li>Pytorch</li>
-                <li>AWS SageMaker</li>
-                <li>AWS Lambda</li>
-                <li>Docker</li>
-              </ul>
-            </div>
-              <img src="./media/authorencoder.png" alt="Github Screenshot of the Author Encoder project" class="img-border">
-          </article>
-          <article class="project">
-            <div class="text">
-              <h3>PDF browser reader</h3>
-
-              <p>Re-defining the experience of reading a PDF on any browser. This javascriptfrontend, based on PDF.js, is the living proof that there still exist a gap in the market for anyone who wants to improve the experience of reading PDFs within a browser. 
-                Try it yourself <a href="https://reneang17.github.io/pdf-viewer-frontend/" target="_blank">here</a>. Github repo <a href="https://github.com/reneang17/pdf-viewer-frontend" target="_blank">here</a>.
-              </p>
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>PDF.js</li>
-              </ul>
-            </div>
-            <img src="./media/pdf-viewer.png" alt="pdf viewer within browser" class="img-border">
-          </article>
-          <article class="project">
-            <div class="text">
-              <h3>Fullstack PDF Browser Reader</h3>
-              <p>Taken a former project to the next level, this is a reader which aims to serve as a virtual library. 
-                It is compatible with any browser and decide. It currently has and API to list, store or delete files from a database. 
-                The new front-end is based on react and PDF.js. 
-                See github repos of the <a href="https://github.com/reneang17/pdf-storage-api" target="_blank">backend</a> and the <a href="https://github.com/reneang17/pdf-viewer-poc" target="_blank">frontend</a>.
-              <ul>
-                <li>Node+Express</li>
-                <li>PostgreSQL + S3 (supabase)</li>
-                <li>Vercel</li>
-              </ul>
-            </div>
-            <img src="./media/pdf-reader-fullstack.png" alt="My currect pdf browser reader now full stack">
-          </article>
-        </div>
-      </main>
-    </div>
-
-    <div class="section-contact">
-      <section id="contact">
-        <h2>Contact me</h2>
-        <p>Feel free to reach out</p>
-        <p>
-          <a href="mailto:reneang17@gmail.com" class="button">Email me</a>
-        </p>
-
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-24">
         
-        <div class="icon-container2">
-          <div class="icon-class2">
-            <i class="fa-solid fa-cat fa-bounce" style="color: #a69580"> </i>
-            <span
-              class="fa-solid fa-ghost fa-shake"
-              style="color: var(--maintext)"
-            ></span>
-            <span
-              class="fa-solid fa-ghost fa-shake"
-              style="color: var(--pred)"
-            ></span>
-            <span
-              class="fa-solid fa-ghost fa-shake"
-              style="color: var(--pyellow)"
-            ></span>
-            <span
-              class="fa-solid fa-ghost fa-shake"
-              style="color: var(--pblue)"
-            ></span>
-            <span
-              class="fa-solid fa-ghost fa-shake"
-              style="color: var(--pgreen)"
-            ></span>
-            <i
-              class="fa-brands fa-space-awesome"
-              style="color: var(--maintext)"
-            ></i>
-          </div>
-          <p>
-            <small
-              >&copy; 2025 <i class="fa-solid fa-cat"></i> René Angeles.
-          </p>
-      </section>
-      
-    </div>
+        <!-- 1. HERO SECTION -->
+        <section class="py-12 md:py-24 border-b-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
+            <div class="space-y-6 max-w-2xl">
+                <!-- Changed text-5xl md:text-6xl to text-6xl md:text-7xl for larger size -->
+                <h1 class="text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-slate-200 leading-[1.1]">
+                    René Ángeles
+                </h1>
+                <h2 class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-normal tracking-tight">
+                    Scientist, Frontend Engineer, QA.
+                </h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 font-light leading-relaxed max-w-xl">
+                    Hi there, so little about me. In the past, I worked on particle physics phenomenology, improving theoretical predictions of hadron collision experiments. Due to practical necessity, my interest shifted toward data science and AI. There, I found my true passion which is software development. If you ask me what I love about software development is that no matter the complexity it is always possible to make progress every, single day.
+                </p>
+                <p class="mt-4 text-lg text-slate-600 dark:text-slate-400 font-light leading-relaxed max-w-xl">
+                    For several years now, I’ve dedicated myself to deepen my foundations of software development and gaining hands-on experience through my own projects and projects by contract with a team of seniors. In this page, you find much of what’ve done since I left academia. So feel free to reach if you are interested in my profile or in any of these projects.
+                </p>
+                
+                <div class="pt-6 flex flex-wrap gap-4">
+                    <a href="#works" class="btn-retro-target inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-slate-900 hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 transition-all shadow-sm">
+                        View Engineering
+                    </a>
+                    <a href="#" class="btn-retro-resume js-theme-card inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 transition-all dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
+                        <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Resume
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    
+        <!-- 2. THE ENGINEERING TIMELINE -->
+        <section id="timeline" class="py-24 border-b-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
+            <div class="mb-12">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Trajectory</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">The Engineering Timeline</h3>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Evolution from high-energy physics to systemic quality architecture.</p>
+            </div>
 
-  
+            <div class="relative border-l-2 border-slate-300 dark:border-slate-700 ml-3 space-y-12">
+                <!-- Item: Independent Developer (Current) -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">Independent Full Stack Engineer</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">2024 – Present</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">Universal PDF Ecosystem</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Ideated and crafted a cross-platform PDF reader from scratch. Built a modular backend with RESTful APIs and a component-based React frontend. Deployed a production-ready serverless architecture on Vercel with Supabase, ensuring transaction safety and secure file access via signed URLs.
+                    </p>
+                </div>
 
-  </body>
-</div>
+                <!-- Item: QA Engineer (MustEngineering - Kallify) -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">QA Engineer (Product Quality)</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">Mar 2024 – Jul 2024</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">MustEngineering (Client: Kallify)</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Evaluated "Product Quality Gaps" and "Quality Perception Deficits" for a leading PropTech/LegalTech firm. Planned issue segmentation (short vs. long term) and narrowed perception deficits in critical notification workflows.
+                    </p>
+                </div>
 
+                <!-- Item: QA Engineer (MustEngineering - Virtual Notary) -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">QA Engineer (System Design)</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">Nov 2023 – Feb 2024</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">MustEngineering (Infrastructure RFP)</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Co-developed the Request for Proposals for Mexico City's virtual notarial infrastructure. Grounded complex business models and legal constraints into modular flux diagrams. Researched market solutions for digital identity and contract signing to create a robust sample implementation.
+                    </p>
+                </div>
+
+                <!-- Item: Facilitator (Atentamente) -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">Facilitator Trainee</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">2020 – 2021</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">Atentamente Consultores AC</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Intensive training in systemic mental and socio-emotional education. Applied "Understanding by Design" pedagogical approaches and mental mapping to synthesize scientific and contemplative well-being frameworks.
+                    </p>
+                </div>
+
+                <!-- Item: AI Fellow -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">AI Fellow</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">Jan 2020 – Apr 2020</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">Insight Data Science (NY)</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        Bridged academia and industry by engineering <em>AuthorEncoder</em>. Built an NLP pipeline from wrangling to production, pioneering the use of triplet loss to cluster writing styles. Deployed via AWS Sagemaker/Lambda and Docker.
+                    </p>
+                </div>
+
+                <!-- Item: Physics -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="js-theme-dot absolute -left-[9px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-300 bg-slate-50 group-hover:border-slate-400 group-hover:bg-slate-200 dark:border-slate-700 transition-colors"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100">Postdoctoral Researcher & PhD</h4>
+                        <span class="font-mono text-sm text-slate-500 dark:text-slate-500">2012 – 2018</span>
+                    </div>
+                    <div class="text-slate-800 dark:text-slate-300 font-medium mb-2">IFJ PAN (Poland) & Univ. of Manchester (UK)</div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                        High-performance computing and data modeling for LHC particle physics simulations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SELECTED WORKS -->
+        <section id="works" class="py-24 border-b-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
+            <div class="mb-12">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Portfolio</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Selected Works</h3>
+            </div>
+
+            <div class="grid gap-8 md:grid-cols-2">
+                
+                <!-- Project: Universal PDF (Main Focus) -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600 md:col-span-2">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Universal PDF Reader</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">Full Stack</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">A production-ready architecture for universal PDF access.</p>
+                        <span id="desc-pdf" class="hidden">
+                            Ideated and crafted a modular Node/Express backend with a React frontend. Implemented serverless deployment on Vercel with Supabase for transaction safety and S3 signed URLs for secure file handling.
+                        </span>
+                        <button onclick="toggleDescription('desc-pdf', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="https://github.com/reneang17/pdf-viewer-poc" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project: Forward -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Forward</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">Vue 3 / Architecture</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">A modern task management ecosystem designed to maximize productivity.</p>
+                        <span id="desc-forward" class="hidden">
+                             Combines a to-do list, agenda, and backlog board. Built with Vue 3, Pinia, and Firebase to explore complex state management and reactive data flow.
+                        </span>
+                        <button onclick="toggleDescription('desc-forward', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="https://github.com/reneang17/forward" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project: SupportBuddy -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">SupportBuddy</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">Python / Desktop App</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">FocusPet is a "frameless" desktop companion for macOS that helps you stay productive.</p>
+                        <span id="desc-buddy" class="hidden">
+                             The cat reacts to your activity, sleeping when you work and judging you when you visit distracting websites.
+                        </span>
+                        <button onclick="toggleDescription('desc-buddy', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="https://github.com/reneang17/SupportBuddy" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project: Author Encoder -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Author Encoder</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">AI / NLP</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">A content-based recommender system that uses NLP to capture authors' writing similarity.</p>
+                        <span id="desc-author" class="hidden">
+                             Built from data wrangling to production using PyTorch and AWS.
+                        </span>
+                        <button onclick="toggleDescription('desc-author', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="https://github.com/reneang17/authorencoder" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project: Maka Yoga -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Maka Yoga</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">Web / Community</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">A modern, responsive web application for Maka Yoga studio in Oaxaca.</p>
+                        <span id="desc-maka" class="hidden">
+                             Built with Vite, Vanilla JavaScript, and Tailwind CSS, focusing on performance, accessibility, and community engagement.
+                        </span>
+                        <button onclick="toggleDescription('desc-maka', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="https://github.com/reneang17/maka" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 4. SKILLS SECTION (THE TOOLBOX) -->
+        <section id="skills" class="py-24 transition-colors duration-300">
+            <div class="mb-12">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Expertise</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">The Toolbox</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Core -->
+                <div>
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-6 border-b-2 border-slate-300 dark:border-slate-700 pb-2">Core & Backend</h4>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-mono text-sm">
+                        <li>JavaScript (ES6+) & TypeScript</li>
+                        <li>Node.js & Express</li>
+                        <li>Python (PyTorch, Pandas)</li>
+                        <li>PostgreSQL & Supabase</li>
+                        <li>S3 Storage</li>
+                    </ul>
+                </div>
+
+                <!-- Frontend -->
+                <div>
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-6 border-b-2 border-slate-300 dark:border-slate-700 pb-2">Frontend & Cloud</h4>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-mono text-sm">
+                        <li>React & Vue 3</li>
+                        <li>PDF.js</li>
+                        <li>Tailwind CSS</li>
+                        <li>AWS (Lambda, Sagemaker)</li>
+                        <li>Vercel Serverless</li>
+                    </ul>
+                </div>
+
+                <!-- Quality & Ops -->
+                <div>
+                    <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-6 border-b-2 border-slate-300 dark:border-slate-700 pb-2">Process & Systemic</h4>
+                    <ul class="space-y-3 text-slate-600 dark:text-slate-400 font-mono text-sm">
+                        <li>Understanding by Design</li>
+                        <li>Systemic Analysis</li>
+                        <li>Flux Diagrams (Miro)</li>
+                        <li>Agile (Kanban)</li>
+                        <li>Docker & CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <!-- Removed border-b-2 border-slate-300 dark:border-slate-700 -->
+        <section id="contact" class="py-24 transition-colors duration-300">
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Connect</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Email -->
+                <a href="mailto:reneang17@gmail.com" class="js-theme-card group flex items-center p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="p-3 rounded-full bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100 mr-4 transition-colors group-hover:bg-slate-200 dark:group-hover:bg-slate-700">
+                        <i data-feather="mail" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Email</h4>
+                        <p class="text-slate-600 dark:text-slate-400">reneang17@gmail.com</p>
+                    </div>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/reneang17/" target="_blank" rel="noopener noreferrer" class="js-theme-card group flex items-center p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600">
+                    <div class="p-3 rounded-full bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100 mr-4 transition-colors group-hover:bg-slate-200 dark:group-hover:bg-slate-700">
+                        <i data-feather="linkedin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">LinkedIn</h4>
+                        <p class="text-slate-600 dark:text-slate-400">/in/reneang17</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 6. FOOTER -->
+    <footer class="js-theme-footer bg-slate-50 border-t-2 border-slate-300 dark:border-slate-700 py-12 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-slate-500 dark:text-slate-500 text-sm">
+                © 2025 René Ángeles.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Toggle Description Function
+        function toggleDescription(id, btn) {
+            const content = document.getElementById(id);
+            const isHidden = content.classList.contains('hidden');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                btn.innerText = 'View less';
+            } else {
+                content.classList.add('hidden');
+                btn.innerText = 'View more';
+            }
+        }
+
+        // --- MULTI-LEVEL BRIGHTNESS LOGIC ---
+        
+        // Configuration for the 5 themes (0 to 4)
+        const themes = [
+            // Level 0: Night (Deep Dark)
+            { 
+                name: 'night',
+                dark: true, 
+                body: 'bg-slate-950', 
+                nav: 'bg-slate-950/90', 
+                footer: 'bg-slate-950',
+                card: 'bg-slate-900',
+                dot: 'bg-slate-900'
+            },
+            // Level 1: Dusk (Soft Dark)
+            { 
+                name: 'dusk',
+                dark: true, 
+                body: 'bg-slate-900', 
+                nav: 'bg-slate-900/90', 
+                footer: 'bg-slate-900',
+                card: 'bg-slate-800',
+                dot: 'bg-slate-800'
+            },
+            // Level 2: Retro (Terminal Style - Black & Yellow)
+            { 
+                name: 'retro',
+                dark: true, 
+                body: 'bg-black', // CSS override takes care of text
+                nav: 'bg-black',
+                footer: 'bg-black',
+                card: 'bg-black',
+                dot: 'bg-black' 
+            },
+            // Level 3: Dawn (Soft Light)
+            { 
+                name: 'dawn',
+                dark: false, 
+                body: 'bg-slate-100', 
+                nav: 'bg-slate-100/90', 
+                footer: 'bg-slate-100',
+                card: 'bg-slate-50',
+                dot: 'bg-slate-200'
+            },
+            // Level 4: Day (Bright Light - Default)
+            { 
+                name: 'day',
+                dark: false, 
+                body: 'bg-slate-50', 
+                nav: 'bg-slate-50/90', 
+                footer: 'bg-slate-50',
+                card: 'bg-white',
+                dot: 'bg-slate-50'
+            }
+        ];
+
+        // List of all possible background classes to clean up before applying new ones
+        const allBgClasses = [
+            'bg-slate-50', 'bg-slate-100', 'bg-slate-200', 
+            'bg-slate-800', 'bg-slate-900', 'bg-slate-950', 'bg-white', 'bg-black',
+            'bg-slate-50/90', 'bg-slate-100/90', 'bg-slate-900/90', 'bg-slate-950/90'
+        ];
+
+        // RETRO THEME ANIMATION CONTROLLER
+        const retroAnimation = {
+            container: null,
+            wrapper: null,
+            sections: [],
+            currentStep: 0,
+            active: false,
+
+            init() {
+                this.container = document.querySelector('.retro-animation-container');
+                this.wrapper = document.querySelector('.retro-icon-wrapper');
+                this.flipBox = document.querySelector('.retro-flip-box');
+                
+                // Define the path through sections
+                this.sections = [
+                    { selector: 'section:nth-of-type(1)', dir: 'normal' },     // Hero: L -> R
+                    { selector: '#timeline', dir: 'reverse' },                 // Timeline: R -> L (User Request)
+                    { selector: '#works', dir: 'normal' },                     // Works: L -> R (User Request)
+                    { selector: '#skills', dir: 'reverse' },                   // Toolbox: R -> L
+                    { selector: '#contact', dir: 'normal' }                    // Contact: L -> R
+                ];
+                
+                if (this.wrapper) {
+                     // Set iteration to 1 so we can hook into 'animationend'
+                    this.wrapper.style.animationIterationCount = '1';
+                    this.wrapper.addEventListener('animationend', () => {
+                        if (!this.active) return;
+                        this.nextStep();
+                    });
+                }
+            },
+
+            start() {
+                if (!this.container) this.init();
+                this.active = true;
+                this.currentStep = 0;
+                this.positionAtSection(0);
+                this.play();
+            },
+
+            stop() {
+                this.active = false;
+                if (this.wrapper) {
+                    this.wrapper.style.animationName = 'none';
+                }
+            },
+
+            play() {
+                if (!this.active || !this.wrapper) return;
+                
+                // Force reflow to restart animation
+                this.wrapper.style.animationName = 'none';
+                void this.wrapper.offsetWidth; // trigger reflow
+                this.wrapper.style.animationName = 'moveRight';
+            },
+
+            nextStep() {
+                this.currentStep++;
+                if (this.currentStep >= this.sections.length) {
+                    this.currentStep = 0; // Start over
+                }
+                this.positionAtSection(this.currentStep);
+                this.play();
+            },
+
+            positionAtSection(index) {
+                if (!this.container) return;
+                
+                const step = this.sections[index];
+                const section = document.querySelector(step.selector);
+                
+                if (section) {
+                    // Position container at the top of this section
+                    const rect = section.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const absoluteTop = rect.top + scrollTop;
+                    
+                    this.container.style.top = `${absoluteTop}px`;
+                    this.wrapper.style.animationDirection = step.dir;
+
+                    // Mirror if reversing so cat chases rocket
+                    if (this.flipBox) {
+                        if (step.dir === 'reverse') {
+                            this.flipBox.classList.add('retro-flipped');
+                        } else {
+                            this.flipBox.classList.remove('retro-flipped');
+                        }
+                    }
+                }
+            }
+        };
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => retroAnimation.init());
+
+        // --- THEME LOGIC ---
+
+        function setTheme(index) {
+            // Ensure index is an integer (range input returns string)
+            index = parseInt(index);
+
+            // Guard against out of bounds (in case of old cached state)
+            if (index < 0) index = 0;
+            if (index >= themes.length) index = themes.length - 1;
+
+            const theme = themes[index];
+            const html = document.documentElement;
+
+            // Update Slider UI (important for initial load)
+            const slider = document.getElementById('theme-slider');
+            if (slider) slider.value = index;
+
+            // 1. Handle Retro Theme Class (for CSS overrides)
+            if (theme.name === 'retro') {
+                html.classList.add('theme-retro');
+                // Start animation if not active
+                if (!retroAnimation.active) {
+                    // Slight delay to ensure layout
+                    setTimeout(() => retroAnimation.start(), 50);
+                }
+            } else {
+                html.classList.remove('theme-retro');
+                retroAnimation.stop();
+            }
+
+            // 2. Toggle Text Color Mode (Dark/Light)
+            // Retro is conceptually 'dark' for tailwind class purposes
+            if (theme.dark) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            // 3. Apply Backgrounds to Elements
+            
+            // Helper to swap classes
+            const swapBg = (selector, newClass) => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    el.classList.remove(...allBgClasses);
+                    el.classList.add(newClass);
+                });
+            };
+
+            swapBg('.js-theme-body', theme.body);
+            swapBg('.js-theme-nav', theme.nav);
+            swapBg('.js-theme-footer', theme.footer);
+            swapBg('.js-theme-card', theme.card);
+            swapBg('.js-theme-dot', theme.dot);
+
+            // 4. Save Preference
+            localStorage.themeLevel = index;
+        }
+
+        // Initialize on Load
+        const savedLevel = localStorage.themeLevel;
+        if (savedLevel !== undefined) {
+            setTheme(parseInt(savedLevel));
+        } else {
+            // Default to Day (4) instead of 3 if system is light, Night (0) if dark
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(0); 
+            } else {
+                setTheme(4); 
+            }
+        }
+    </script>
+</body>
 </html>
