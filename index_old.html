@@ -1,0 +1,277 @@
+<!doctype html>
+<!-- 
+    DEPRECATED VERSION: This is a backup of the previous portfolio logic/design.
+    It is kept for reference purposes only and knows as index_old.html.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>René's Portfolio</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/6a3b2ed20f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter&family=Quattrocento+Sans&family=Tiny5&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <div class="icon-container">
+    <div class="icon-class">
+      <i class="fa-solid fa-cat fa-bounce" style="color: #a69580"> </i>
+      <span
+        class="fa-solid fa-ghost fa-shake"
+        style="color: var(--maintext)"
+      ></span>
+      <span
+        class="fa-solid fa-ghost fa-shake"
+        style="color: var(--pred)"
+      ></span>
+      <span
+        class="fa-solid fa-ghost fa-shake"
+        style="color: var(--pyellow)"
+      ></span>
+      <span
+        class="fa-solid fa-ghost fa-shake"
+        style="color: var(--pblue)"
+      ></span>
+      <span
+        class="fa-solid fa-ghost fa-shake"
+        style="color: var(--pgreen)"
+      ></span>
+      <i
+        class="fa-brands fa-space-awesome fa-spin"
+        style="color: var(--maintext)"
+      ></i>
+    </div>
+  </div>
+  <div class="wrapper">
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <h1>
+            <a href="index.html"
+              ><i class="fa-solid fa-shield-cat"></i> René's</a
+            >
+          </h1>
+        </li>
+        <li>
+          <a href="#projects"
+            ><span class="fa-solid fa-screwdriver-wrench"></span> Portfolio</a
+          >
+        </li>
+        <li class="resume">
+          <a href="https://docs.google.com/document/d/1bx7T1hZQ_d4ZDRcL59J5J8WqPk50w6zJTs_hzifPdgM/edit?usp=sharing"
+            ><span class="fa-solid fa-ghost fa-shake"></span> Resumé</a
+          >
+        </li>
+        <li>
+          <a href="#contact"
+            ><span class="fa-solid fa-envelope"></span> Contact</a
+          >
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/reneang17/" target="_blank">
+            <span class="fa-brands fa-linkedin" aria-only="true"></span>
+            <span class="sr-only">Linkedin</span></a
+          >
+        </li>
+        <li>
+          <a href="https://www.github.com/reneang17" aria-only="true"
+            ><span class="fa-brands fa-github"></span>
+            <span class="sr-only">Github</span></a
+          >
+        </li>
+        <!-- <li>
+          <a href="https://www.github.com/reneang17" class="button">Resumé</a>
+        </li> -->
+      </ul>
+    </nav>
+
+    <section id="intro">
+      <p class="name">Hello, my name is <span>René Ángeles</span></p>
+      <h2>I work with software</h2>
+
+      <p>
+        Specifically QA engineering, that is helping my team deliver solutions
+        at adecuate standards.
+      </p>
+
+      <p>
+        Currently, working on an app for tcg communities and leveling up my
+        skills at
+        <a href="https://frontendmasters.com/" target="_blank"
+          >Frontend Masters</a
+        >.
+      </p>
+    </section>
+
+   
+
+
+
+    <div class="wrapper">
+      <main>
+        <h2 id="projects">Portfolio</h2>
+        <div class="projects">
+          <article class="project">
+            <div class="text">
+              <h3>Forward</h3>
+              <p>
+                A modern task management and agenda application designed to maximize daily productivity. 
+                It combines a traditional to-do list with a structured agenda and a backlog board to capture all your ideas.
+                Check out the code <a href="https://github.com/reneang17/forward" target="_blank">here</a>.
+              </p>
+              <ul>
+                <li>Vue.js 3</li>
+                <li>Vite</li>
+                <li>Tailwind CSS</li>
+                <li>Pinia</li>
+                <li>Firebase</li>
+              </ul>
+            </div>
+            <img src="./media/forward.png" alt="Screenshot of the Forward project showing the focus view" class="img-border">
+          </article>
+          <article class="project">
+            <div class="text">
+              <h3>SupportBuddy</h3>
+              <p>
+                FocusPet is a "frameless" desktop companion for macOS that helps you stay productive. 
+                The cat reacts to your activity, sleeping when you work and judging you when you visit distracting websites.
+                Check out the code <a href="https://github.com/reneang17/SupportBuddy" target="_blank">here</a>.
+              </p>
+              <ul>
+                <li>Python</li>
+                <li>Tkinter</li>
+              </ul>
+            </div>
+            <img src="./media/supportbuddy.jpg" alt="Screenshot of SupportBuddy showing the cat sleeping" class="img-border">
+          </article>
+          <article class="project">
+            <div class="text">
+              <h3>Maka Yoga</h3>
+              <p>
+                A modern, responsive web application for Maka Yoga studio in Oaxaca, built with performance, accessibility, and community in mind.
+                Check out the code <a href="https://github.com/reneang17/maka" target="_blank">here</a>.
+              </p>
+              <ul>
+                <li>Vite</li>
+                <li>Vanilla JavaScript</li>
+                <li>Tailwind CSS</li>
+                <li>Font Awesome</li>
+              </ul>
+            </div>
+            <img src="./media/maka.png" alt="Screenshot of the Maka Yoga website hero section" class="img-border">
+          </article>
+          <article class="project">
+            <div class="text">
+              <h3>Author Encoder</h3>
+
+              <p>During my AI fellowhship at Insight Data Science NY, I attempted to build a  
+                recommendation system of books. What I mean by this,
+                is to use a novel method to encode writing style useing NLP techniques. Then the idea is that you have metrics that 
+                can show you authors that write similarly to what you liked.
+                Checkout more detaial at my repo <a href="https://github.com/reneang17/authorencoder" target="_blank">here</a>.</p>
+
+              <ul>
+                <li>Pytorch</li>
+                <li>AWS SageMaker</li>
+                <li>AWS Lambda</li>
+                <li>Docker</li>
+              </ul>
+            </div>
+              <img src="./media/authorencoder.png" alt="Github Screenshot of the Author Encoder project" class="img-border">
+          </article>
+          <article class="project">
+            <div class="text">
+              <h3>PDF browser reader</h3>
+
+              <p>Re-defining the experience of reading a PDF on any browser. This javascriptfrontend, based on PDF.js, is the living proof that there still exist a gap in the market for anyone who wants to improve the experience of reading PDFs within a browser. 
+                Try it yourself <a href="https://reneang17.github.io/pdf-viewer-frontend/" target="_blank">here</a>. Github repo <a href="https://github.com/reneang17/pdf-viewer-frontend" target="_blank">here</a>.
+              </p>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PDF.js</li>
+              </ul>
+            </div>
+            <img src="./media/pdf-viewer.png" alt="pdf viewer within browser" class="img-border">
+          </article>
+          <article class="project">
+            <div class="text">
+              <h3>Fullstack PDF Browser Reader</h3>
+              <p>Taken a former project to the next level, this is a reader which aims to serve as a virtual library. 
+                It is compatible with any browser and decide. It currently has and API to list, store or delete files from a database. 
+                The new front-end is based on react and PDF.js. 
+                See github repos of the <a href="https://github.com/reneang17/pdf-storage-api" target="_blank">backend</a> and the <a href="https://github.com/reneang17/pdf-viewer-poc" target="_blank">frontend</a>.
+              <ul>
+                <li>Node+Express</li>
+                <li>PostgreSQL + S3 (supabase)</li>
+                <li>Vercel</li>
+              </ul>
+            </div>
+            <img src="./media/pdf-reader-fullstack.png" alt="My currect pdf browser reader now full stack">
+          </article>
+        </div>
+      </main>
+    </div>
+
+    <div class="section-contact">
+      <section id="contact">
+        <h2>Contact me</h2>
+        <p>Feel free to reach out</p>
+        <p>
+          <a href="mailto:reneang17@gmail.com" class="button">Email me</a>
+        </p>
+
+        
+        <div class="icon-container2">
+          <div class="icon-class2">
+            <i class="fa-solid fa-cat fa-bounce" style="color: #a69580"> </i>
+            <span
+              class="fa-solid fa-ghost fa-shake"
+              style="color: var(--maintext)"
+            ></span>
+            <span
+              class="fa-solid fa-ghost fa-shake"
+              style="color: var(--pred)"
+            ></span>
+            <span
+              class="fa-solid fa-ghost fa-shake"
+              style="color: var(--pyellow)"
+            ></span>
+            <span
+              class="fa-solid fa-ghost fa-shake"
+              style="color: var(--pblue)"
+            ></span>
+            <span
+              class="fa-solid fa-ghost fa-shake"
+              style="color: var(--pgreen)"
+            ></span>
+            <i
+              class="fa-brands fa-space-awesome"
+              style="color: var(--maintext)"
+            ></i>
+          </div>
+          <p>
+            <small
+              >&copy; 2025 <i class="fa-solid fa-cat"></i> René Angeles.
+          </p>
+      </section>
+      
+    </div>
+
+    
+
+  
+
+  </body>
+</div>
+
+</html>
