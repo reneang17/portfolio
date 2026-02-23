@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal PDF Reader | René Ángeles</title>
+    <meta name="description" content="Universal PDF Reader — Experience-Driven PDF.js Viewer">
+    
+    <!-- Fonts: Inter for UI, JetBrains Mono for Code/Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* RETRO THEME OVERRIDES (Terminal Style) */
+        html.theme-retro body {
+            background-color: #000000 !important;
+            color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-nav {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+            border-bottom-color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-footer {
+            background-color: #000000 !important;
+            border-top-color: #ffff0b !important;
+        }
+        html.theme-retro .js-theme-card, html.theme-retro .js-theme-content {
+            background-color: #000000 !important;
+            border-color: #ffff0b !important;
+        }
+        /* Override all text colors to yellow in retro mode */
+        html.theme-retro [class*="text-slate-"], 
+        html.theme-retro .dark\:text-slate-200,
+        html.theme-retro .dark\:text-slate-400,
+        html.theme-retro .text-white,
+        html.theme-retro .dark\:text-white {
+            color: #ffff0b !important;
+        }
+        html.theme-retro a:hover {
+            color: #22ff06 !important;
+        }
+        html.theme-retro svg, html.theme-retro i {
+            color: #ffff0b !important;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body class="js-theme-body bg-slate-50 text-slate-900 font-sans antialiased selection:bg-slate-200 selection:text-slate-900 dark:text-slate-100 dark:selection:bg-slate-700 dark:selection:text-slate-50 transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="js-theme-nav fixed top-0 w-full bg-slate-50/90 backdrop-blur-sm border-b-2 border-slate-300 dark:border-slate-700 z-50 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-1 hover:opacity-80 transition-opacity">
+                <!-- Custom Logo Image -->
+                <div class="h-10 w-16 -ml-2 bg-current text-slate-900 dark:text-slate-200 transition-colors duration-300"
+                     style="-webkit-mask-image: url('media/logo.png'); mask-image: url('media/logo.png'); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;">
+                </div>
+                <span class="text-[17px] font-bold tracking-tight text-slate-900 dark:text-slate-200">R. Ángeles</span>
+            </a>
+            
+             <div class="flex items-center gap-6">
+                <a href="index.html" class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                    <i data-feather="arrow-left" class="inline-block w-4 h-4 mr-1"></i> Back to Portfolio
+                </a>
+                
+                <!-- Brightness Slider -->
+                <div class="flex items-center gap-2 bg-slate-200 dark:bg-slate-800 rounded-full px-3 py-1.5 transition-colors duration-300 shadow-inner">
+                    <i data-feather="moon" class="w-4 h-4 text-slate-500 dark:text-slate-400"></i>
+                    <input type="range" id="theme-slider" min="0" max="4" step="1" 
+                           class="w-24 h-1.5 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-slate-600 accent-slate-900 dark:accent-slate-200 focus:outline-none"
+                           aria-label="Adjust Brightness"
+                           oninput="setTheme(this.value)">
+                    <i data-feather="sun" class="w-4 h-4 text-slate-500 dark:text-slate-400"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-24 js-theme-content">
+        <!-- Header -->
+        <header class="mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100 mb-4">
+                Universal PDF Reader
+            </h1>
+            <p class="text-xl text-slate-500 dark:text-slate-400">
+                Experience-Driven PDF.js Viewer (3 Iterations)
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="https://github.com/reneang17/pdf-viewer-poc" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                    <i data-feather="github" class="w-4 h-4 mr-2"></i> View on GitHub
+                </a>
+                <a href="https://reneang17.github.io/spotlight/" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                    <i data-feather="external-link" class="w-4 h-4 mr-2"></i> Live Demo
+                </a>
+            </div>
+        </header>
+
+        <!-- Content Sections -->
+        <div class="space-y-16 text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+            
+            <!-- Problem Statement -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 border-b pb-2 border-slate-200 dark:border-slate-800">
+                    Problem statement: why most PDF readers still feel “worse than paper”
+                </h2>
+                <p class="mb-4">
+                    Most PDF viewers optimize for document display, not reading experience:
+                </p>
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li>Navigation is often generic (scroll + search) instead of study-friendly (semantic sections, quick jumps).</li>
+                    <li>Large documents can feel sluggish without virtualization and careful rendering pipelines.</li>
+                    <li>Many custom viewers lose essential affordances (text selection, links, annotations).</li>
+                    <li>“Dark mode” is common, but few tools explore lighting, attention, and comfort—the things that make physical reading enjoyable.</li>
+                </ul>
+                <p class="font-medium text-slate-900 dark:text-slate-100 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg border-l-4 border-slate-400 dark:border-slate-500 js-theme-card">
+                    My goal is a universal PDF reader (web-native, cross-device, powered by PDF.js) that competes on both technical portability and reading experience.
+                </p>
+            </section>
+
+            <!-- Architectural Evolution -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6 border-b pb-2 border-slate-200 dark:border-slate-800">
+                    Architectural evolution across iterations
+                </h2>
+
+                <div class="space-y-10">
+                    <!-- Iteration 1 -->
+                    <div class="js-theme-card p-6 border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 shadow-sm">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">Iteration 1 — ForestViewer: <span class="font-normal text-slate-500 dark:text-slate-400">prove UX beyond “open and scroll”</span></h3>
+                        <p class="mb-4">
+                            ForestViewer is a book-specific study reader that treats navigation as the core feature: random access, chapter/section jumps, and verse-driven entry points. It demonstrates that a PDF reader can be designed like a learning tool, not just a file viewer.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <a href="https://github.com/reneang17/forestViewer" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="github" class="w-4 h-4 mr-1"></i> Repo
+                            </a>
+                            <a href="https://reneang17.github.io/forestViewer/" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
+                            </a>
+                        </div>
+                        <div class="my-6 flex justify-center">
+                            <div class="border-[6px] border-slate-800 dark:border-slate-600 rounded-[2rem] overflow-hidden shadow-lg max-w-[250px] w-full bg-black">
+                                <img src="https://raw.githubusercontent.com/reneang17/forestViewer/main/assets/forestViewer.gif" alt="ForestViewer Demo" class="w-full h-auto block">
+                            </div>
+                        </div>
+                        <p class="text-sm font-mono text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 p-3 rounded js-theme-body">
+                            <strong class="font-semibold">Key idea proved:</strong> structured navigation and random access can be a primary UX primitive, especially for reference books and study workflows.
+                        </p>
+                    </div>
+
+                    <!-- Iteration 2 -->
+                    <div class="js-theme-card p-6 border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 shadow-sm">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">Iteration 2 — POC: <span class="font-normal text-slate-500 dark:text-slate-400">move from a single book to a library system</span></h3>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <a href="https://github.com/reneang17/pdf-storage-api" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="github" class="w-4 h-4 mr-1"></i> API Repo
+                            </a>
+                            <a href="https://github.com/reneang17/pdf-viewer-poc" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="github" class="w-4 h-4 mr-1"></i> UI Repo
+                            </a>
+                            <a href="https://reneang17.github.io/pdf-viewer-poc/" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
+                            </a>
+                        </div>
+                        <p class="mb-4">
+                            The second iteration focuses on componentization and scale-out architecture:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 mb-4">
+                            <li>A reusable <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-sm js-theme-body">React PDFViewer</code> composed of small units (upload, selector, navigation, canvas renderer).</li>
+                            <li>A library workflow: fetch list of PDFs from an API and load a selected PDF via a download URL endpoint.</li>
+                            <li>Correct HiDPI rendering behavior using device pixel ratio scaling.</li>
+                        </ul>
+                        <p class="text-sm font-mono text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 p-3 rounded js-theme-body">
+                            <strong class="font-semibold">Key idea proved:</strong> a universal reader needs a system boundary—viewer runtime separated from storage/auth via a stable API contract.
+                        </p>
+                    </div>
+
+                    <!-- Iteration 3 -->
+                    <div class="js-theme-card p-6 border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 shadow-sm border-l-4 border-l-slate-400 dark:border-l-slate-500">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">Iteration 3 — Spotlight Reader: <span class="font-normal text-slate-500 dark:text-slate-400">build a real viewer engine + immersive reading modes</span></h3>
+                        <p class="mb-4">
+                            The third iteration becomes a foundation for a product:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-3 mb-4 text-base">
+                            <li>Built <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-sm js-theme-body">@bridge-pdf/core</code>, exporting a framework-agnostic viewer engine (BridgePDF) plus a theme controller (ThemeController).</li>
+                            <li>
+                                <strong>Implemented virtualized rendering:</strong>
+                                <ul class="list-circle pl-6 mt-1 text-sm text-slate-600 dark:text-slate-400">
+                                    <li>Create page placeholders</li>
+                                    <li>Render pages lazily using IntersectionObserver</li>
+                                    <li>Track current page with a second observer</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Added multi-layer support:</strong>
+                                <ul class="list-circle pl-6 mt-1 text-sm text-slate-600 dark:text-slate-400">
+                                    <li>Canvas rendering</li>
+                                    <li>Text layer (pdfjsLib.TextLayer)</li>
+                                    <li>Annotation/link layer with viewport coordinate mapping</li>
+                                </ul>
+                            </li>
+                            <li>Added a dedicated thumbnail pipeline with lazy rendering and page sync.</li>
+                            <li>
+                                <strong>Introduced Paper/Dark/Lamp/Spotlight modes:</strong>
+                                <ul class="list-circle pl-6 mt-1 text-sm text-slate-600 dark:text-slate-400">
+                                    <li>Theme toggles in ThemeController</li>
+                                    <li>Spotlight position tracked using ResizeObserver + animation frames and stored in CSS vars (<code class="font-mono text-xs">--spotlight-x</code>)</li>
+                                    <li>Lamp/Spotlight overlays implemented via CSS radial gradients and a paper tint overlay using blend modes</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-4 mb-4 mt-4">
+                            <a href="https://github.com/reneang17/spotlight" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="github" class="w-4 h-4 mr-1"></i> Repo
+                            </a>
+                            <a href="https://reneang17.github.io/spotlight/" target="_blank" class="inline-flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
+                            </a>
+                        </div>
+                        <div class="my-6 flex justify-center">
+                            <div class="border-[6px] border-slate-800 dark:border-slate-600 rounded-[2rem] overflow-hidden shadow-lg max-w-[250px] w-full bg-black">
+                                <img src="https://raw.githubusercontent.com/reneang17/spotlight/main/media/spotlight-demo.gif" alt="Spotlight Demo" class="w-full h-auto block">
+                            </div>
+                        </div>
+                        <p class="text-sm font-mono text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 p-3 rounded mt-4 js-theme-body">
+                            <strong class="font-semibold">Key idea proved:</strong> “reading experience” can be engineered: a rendering engine plus a perceptual layer (lighting/comfort modes).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Technical Decisions -->
+            <section>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 border-b pb-2 border-slate-200 dark:border-slate-800">
+                    Technical decisions (what I optimized for)
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-slate-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-900 dark:text-slate-100">Cross-platform:</strong> JavaScript + PDF.js (browser-first portability). PDF.js’s model (document → page → viewport → canvas render) is the core primitive.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="zap" class="w-5 h-5 text-slate-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-900 dark:text-slate-100">Performance for large PDFs:</strong> virtualization via IntersectionObserver rather than eager rendering all pages.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="layers" class="w-5 h-5 text-slate-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-900 dark:text-slate-100">Preserve PDF affordances:</strong> text and annotation layers rather than “canvas-only” rendering.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="package" class="w-5 h-5 text-slate-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-900 dark:text-slate-100">Reusable architecture:</strong> package core viewer logic separately from the demo app.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="eye" class="w-5 h-5 text-slate-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-900 dark:text-slate-100">Experience experimentation:</strong> Lamp/Spotlight modes implemented as a controllable theme system, not a one-off UI trick.
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+             <!-- UX experimentation -->
+             <section class="grid md:grid-cols-2 gap-8">
+                <div>
+                     <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 border-b pb-2 border-slate-200 dark:border-slate-800">
+                        UX experimentation & research
+                    </h2>
+                    <p class="mb-4 max-w-lg">
+                        This project is deliberately iterative: each version answers a question.
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400 max-w-lg">
+                        <li>Can a PDF reader feel like a study tool? <span class="text-sm">(ForestViewer)</span></li>
+                        <li>What does a library-ready PDF platform boundary look like? <span class="text-sm">(POC: API + component viewer)</span></li>
+                        <li>What would it take to compete with native reading comfort? <span class="text-sm">(Spotlight: virtualization + perceptual modes)</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 border-b pb-2 border-slate-200 dark:border-slate-800">
+                        AI-assisted engineering methodology
+                    </h2>
+                    <p class="mb-4 text-sm text-slate-500 uppercase tracking-widest font-bold">
+                        Honest + strategically framed
+                    </p>
+                    <p class="mb-4">
+                        I’m not a senior engineer, so I developed this using AI-assisted workflows (LLMs as a debugging partner, refactoring assistant, and research accelerator). The value isn’t “AI wrote the code”—it’s that I used modern tools to iterate faster while I owned:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-1 text-slate-600 dark:text-slate-400">
+                        <li>system decomposition (core vs app),</li>
+                        <li>performance strategy (virtualization),</li>
+                        <li>correctness boundaries (worker setup, layers),</li>
+                        <li>product decisions (navigation primitives, reading comfort modes),</li>
+                        <li>and shipping working demos.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="js-theme-footer bg-slate-50 border-t-2 border-slate-300 dark:border-slate-700 py-12 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-slate-500 dark:text-slate-500 text-sm">
+                © 2026 René Ángeles.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // THEME LOGIC (Mirrored from index.html)
+        const themes = [
+            { name: 'night', dark: true, body: 'bg-slate-950', nav: 'bg-slate-950/90', footer: 'bg-slate-950', card: 'bg-slate-900'},
+            { name: 'dusk', dark: true, body: 'bg-slate-900', nav: 'bg-slate-900/90', footer: 'bg-slate-900', card: 'bg-slate-800'},
+            { name: 'retro', dark: true, body: 'bg-black', nav: 'bg-black', footer: 'bg-black', card: 'bg-black'},
+            { name: 'dawn', dark: false, body: 'bg-slate-200', nav: 'bg-slate-200/90', footer: 'bg-slate-200', card: 'bg-slate-100'},
+            { name: 'day', dark: false, body: 'bg-slate-50', nav: 'bg-slate-50/90', footer: 'bg-slate-50', card: 'bg-white'}
+        ];
+
+        const allBgClasses = [
+            'bg-slate-50', 'bg-slate-100', 'bg-slate-200', 'bg-slate-300',
+            'bg-slate-800', 'bg-slate-900', 'bg-slate-950', 'bg-white', 'bg-black',
+            'bg-slate-50/90', 'bg-slate-100/90', 'bg-slate-200/90', 'bg-slate-900/90', 'bg-slate-950/90'
+        ];
+
+        function setTheme(index) {
+            index = parseInt(index);
+            if (index < 0) index = 0;
+            if (index >= themes.length) index = themes.length - 1;
+
+            const theme = themes[index];
+            const html = document.documentElement;
+            const slider = document.getElementById('theme-slider');
+            if (slider) slider.value = index;
+
+            if (theme.name === 'retro') {
+                html.classList.add('theme-retro');
+            } else {
+                html.classList.remove('theme-retro');
+            }
+
+            if (theme.dark) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            const swapBg = (selector, newClass) => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    el.classList.remove(...allBgClasses);
+                    el.classList.add(newClass);
+                });
+            };
+
+            swapBg('.js-theme-body', theme.body);
+            swapBg('.js-theme-nav', theme.nav);
+            swapBg('.js-theme-footer', theme.footer);
+            swapBg('.js-theme-card', theme.card);
+
+            localStorage.themeLevel = index;
+        }
+
+        const savedLevel = localStorage.themeLevel;
+        if (savedLevel !== undefined) {
+            setTheme(parseInt(savedLevel));
+        } else {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(0); 
+            } else {
+                setTheme(4); 
+            }
+        }
+    </script>
+</body>
+</html>
