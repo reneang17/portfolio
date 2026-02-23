@@ -163,6 +163,26 @@
         .retro-ghost-5 { color: #22ff06; } /* pgreen */
         .retro-rocket { color: #d6d5ff; } /* maintext */
 
+        /* NIGHT & DUSK THEME: soften bright whites to warm off-white */
+        html.theme-night [class*="dark:text-white"],
+        html.theme-night [class*="dark:text-slate-100"],
+        html.theme-night [class*="dark:text-slate-200"],
+        html.theme-dusk [class*="dark:text-white"],
+        html.theme-dusk [class*="dark:text-slate-100"],
+        html.theme-dusk [class*="dark:text-slate-200"] {
+            color: #FDF5E6 !important;
+        }
+        /* Keep hero name bright white */
+        html.theme-night #hero-name,
+        html.theme-dusk #hero-name {
+            color: white !important;
+        }
+        /* Soften the "View Engineering" button background */
+        html.theme-night .btn-retro-target,
+        html.theme-dusk .btn-retro-target {
+            background-color: #EDEAE0 !important;
+        }
+
     </style>
 </head>
 <!-- Initial state: Default to Day (bg-slate-50). JS will take over. -->
@@ -231,7 +251,7 @@
         <section class="py-12 md:py-24 border-b-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
             <div class="space-y-6 max-w-2xl">
                 <!-- Changed text-5xl md:text-6xl to text-6xl md:text-7xl for larger size -->
-                <h1 class="text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-slate-200 leading-[1.1]">
+                <h1 id="hero-name" class="text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-slate-200 leading-[1.1]">
                     René Ángeles
                 </h1>
                 <h2 class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-normal tracking-tight">
@@ -748,16 +768,22 @@
             const slider = document.getElementById('theme-slider');
             if (slider) slider.value = index;
 
-            // 1. Handle Retro Theme Class (for CSS overrides)
-            if (theme.name === 'retro') {
+            // 1. Handle Theme Classes (for CSS overrides)
+            html.classList.remove('theme-night', 'theme-dusk', 'theme-retro');
+            if (theme.name === 'night') {
+                html.classList.add('theme-night');
+            } else if (theme.name === 'dusk') {
+                html.classList.add('theme-dusk');
+            } else if (theme.name === 'retro') {
                 html.classList.add('theme-retro');
-                // Start animation if not active
+            }
+
+            // Handle Retro animation
+            if (theme.name === 'retro') {
                 if (!retroAnimation.active) {
-                    // Slight delay to ensure layout
                     setTimeout(() => retroAnimation.start(), 50);
                 }
             } else {
-                html.classList.remove('theme-retro');
                 retroAnimation.stop();
             }
 

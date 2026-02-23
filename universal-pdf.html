@@ -79,6 +79,16 @@
             color: #ffff0b !important;
             fill: currentColor;
         }
+
+        /* NIGHT & DUSK THEME: soften bright whites to warm off-white */
+        html.theme-night [class*="dark:text-white"],
+        html.theme-night [class*="dark:text-slate-100"],
+        html.theme-night [class*="dark:text-slate-200"],
+        html.theme-dusk [class*="dark:text-white"],
+        html.theme-dusk [class*="dark:text-slate-100"],
+        html.theme-dusk [class*="dark:text-slate-200"] {
+            color: #FDF5E6 !important;
+        }
     </style>
 </head>
 <body class="js-theme-body bg-slate-50 text-slate-900 font-sans antialiased selection:bg-slate-200 selection:text-slate-900 dark:text-slate-100 dark:selection:bg-slate-700 dark:selection:text-slate-50 transition-colors duration-300">
@@ -379,10 +389,13 @@
             const slider = document.getElementById('theme-slider');
             if (slider) slider.value = index;
 
-            if (theme.name === 'retro') {
+            html.classList.remove('theme-night', 'theme-dusk', 'theme-retro');
+            if (theme.name === 'night') {
+                html.classList.add('theme-night');
+            } else if (theme.name === 'dusk') {
+                html.classList.add('theme-dusk');
+            } else if (theme.name === 'retro') {
                 html.classList.add('theme-retro');
-            } else {
-                html.classList.remove('theme-retro');
             }
 
             if (theme.dark) {
