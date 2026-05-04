@@ -225,6 +225,7 @@
                 <div class="hidden sm:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-400">
                     <a href="#timeline" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Timeline</a>
                     <a href="#works" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Works</a>
+                    <a href="#visuals" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Visuals</a>
                     <a href="#skills" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Toolbox</a>
                     <a href="#contact" class="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Contact</a>
                 </div>
@@ -507,6 +508,39 @@
             </div>
         </section>
 
+        <!-- 3.5 VISUALS SECTION -->
+        <section id="visuals" class="py-24 border-b-2 border-slate-300 dark:border-slate-700 transition-colors duration-300">
+            <div class="mb-12">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Aesthetics</h2>
+                <h3 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Visual Explorations</h3>
+            </div>
+
+            <div class="grid gap-8 md:grid-cols-2">
+                <!-- Project: Binnigulaza -->
+                <article class="js-theme-card group relative flex flex-col items-start p-6 border border-slate-300 rounded-lg hover:border-slate-400 hover:shadow-sm transition-all bg-white dark:border-slate-700 dark:hover:border-slate-600 md:col-span-2">
+                    <div class="flex items-center justify-between w-full mb-4">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-300">Binni' Gulaza</h4>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200">Graphic Design / Video</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 mb-6 flex-grow">
+                        <p class="inline">Audiovisual production for Sergio Santamaría's theater play based on Zapotec legends.</p>
+                        <span id="desc-binnigulaza" class="hidden">
+                             Collaborated with dancers, artisans, musicians, and set designers to create visual content that builds interest and showcases the behind-the-scenes work of this cultural production.
+                        </span>
+                        <button onclick="toggleDescription('desc-binnigulaza', this)" class="text-slate-900 dark:text-slate-200 font-semibold hover:text-slate-700 dark:hover:text-white text-sm ml-1 underline decoration-slate-400 dark:decoration-slate-600 underline-offset-2 transition-colors focus:outline-none">View more</button>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-700 w-full flex items-center gap-4 flex-wrap text-sm font-medium text-slate-900 dark:text-slate-200">
+                        <a href="binnigulaza.html" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            View Project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                        <a href="https://www.instagram.com/binnigulazaespectaculooaxaca/" target="_blank" class="flex items-center hover:text-slate-600 dark:hover:text-slate-400 transition-colors">
+                            Instagram <i data-feather="external-link" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
         <!-- 4. SKILLS SECTION (THE TOOLBOX) -->
         <section id="skills" class="py-24 transition-colors duration-300">
             <div class="mb-12">
@@ -548,6 +582,7 @@
                         <li>Flux Diagrams (Miro)</li>
                         <li>Agile (Kanban)</li>
                         <li>Docker & CI/CD</li>
+                        <li>Shotcut (Video Production)</li>
                     </ul>
                 </div>
             </div>
@@ -692,10 +727,11 @@
                 // Define the path through sections
                 this.sections = [
                     { selector: 'section:nth-of-type(1)', dir: 'normal' },     // Hero: L -> R
-                    { selector: '#timeline', dir: 'reverse' },                 // Timeline: R -> L (User Request)
-                    { selector: '#works', dir: 'normal' },                     // Works: L -> R (User Request)
-                    { selector: '#skills', dir: 'reverse' },                   // Toolbox: R -> L
-                    { selector: '#contact', dir: 'normal' }                    // Contact: L -> R
+                    { selector: '#timeline', dir: 'reverse' },                 // Timeline: R -> L
+                    { selector: '#works', dir: 'normal' },                     // Works: L -> R
+                    { selector: '#visuals', dir: 'reverse' },                  // Visuals: R -> L
+                    { selector: '#skills', dir: 'normal' },                    // Toolbox: L -> R
+                    { selector: '#contact', dir: 'reverse' }                   // Contact: R -> L
                 ];
                 
                 if (this.wrapper) {
